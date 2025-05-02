@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" style="height: auto; min-height: 500px;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Honey Barrel</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="height: auto; min-height: 500px;">
+  <div class="app-container">
+    <!-- App Header -->
+    <header class="app-header">
+      <div class="brand">
+        <img src="assets/icon48.png" alt="The Honey Barrel" class="brand-logo">
+        <h1 class="brand-name">The Honey Barrel</h1>
+      </div>
+      <nav class="header-nav">
+        <button id="settingsToggle" class="nav-icon" aria-label="Settings">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+      </nav>
+    </header>
+
+    <!-- States Container -->
+    <main class="main-content">
+      <!-- Loading State -->
+      <div id="loading" class="state loading-state">
+        <div class="loader-container">
+          <div class="loader"></div>
+        </div>
+        <p class="loading-text">Analyzing current page for whisky & wine bottles</p>
+      </div>
+
+      <!-- No Bottle State -->
+      <div id="no-bottle" class="state no-bottle-state hidden">
+        <div class="state-icon-container">
+          <svg class="state-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4"></path><path d="M12 14v7"></path><path d="M4 8l16 0"></path><path d="M7 5l10 0"></path><path d="M17 14c0-1.105-.898-2-2-2h-6c-1.105 0-2 .895-2 2v1h10v-1Z"></path></svg>
+        </div>
+        <h2 class="state-title">No Bottle Detected</h2>
+        <p class="state-description">Please visit a wine or whisky product page to see pricing and marketplace comparisons.</p>
+        
+        <div class="info-card">
+          <div class="info-card-header">
+            <svg class="info-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <h3>Supported Retailers</h3>
+          </div>
+          <div class="sites-grid">
+            <div class="site-item">whiskyshop.com</div>
+            <div class="site-item">wine.com</div>
+            <div class="site-item">masterofmalt.com</div>
+            <div class="site-item">thewhiskyexchange.com</div>
+            <div class="site-item">amazon.com</div>
+            <div class="site-item">And many more...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottle Found State -->
+      <div id="bottle-found" class="state bottle-found-state hidden">
+        <!-- Bottle Information Card -->
+        <div class="bottle-card">
+          <div class="bottle-header">
+            <h2 class="bottle-title">Detected Bottle</h2>
+            <div class="bottle-badges">
+              <div class="badge ai-badge hidden">AI Enhanced</div>
+              <div class="badge source-badge">Web Detection</div>
+            </div>
+          </div>
+          
+          <div class="bottle-details">
+            <div class="detail-row">
+              <div class="detail-label">Name</div>
+              <div id="bottle-name" class="detail-value"><span>Loading...</span></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Price</div>
+              <div id="bottle-price" class="detail-value"><span>Loading...</span></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Source</div>
+              <div id="bottle-source" class="detail-value"><span>Loading...</span></div>
+            </div>
+          </div>
+          
+          <div id="enhanced-details-container" class="enhanced-details-container hidden">
+            <!-- Enhanced details will be inserted here dynamically -->
+          </div>
+        </div>
+
+        <!-- BAXUS Marketplace Matches -->
+        <div class="matches-section">
+          <div class="section-header">
+            <h2 id="matches-title">BAXUS Marketplace Alternatives</h2>
+            <span class="matches-count"><span id="matches-count">0</span> results</span>
+          </div>
+          
+          <div id="matches-list-container" class="matches-list">
+            <!-- Matches will be inserted here dynamically -->
+          </div>
+          
+          <a href="https://baxus.co/?sortBy=priority%3Adesc" target="_blank" class="baxus-link">
+            <span>Explore BAXUS Marketplace</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3182CE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="external-link-icon"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Settings Panel -->
+    <div id="settings-panel" class="settings-panel hidden">
+      <div class="settings-header">
+        <h2>Settings</h2>
+        <button id="closeSettings" class="close-settings" aria-label="Close settings">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      
+      <div class="settings-content">
+        <div class="setting-item">
+          <div class="setting-info">
+            <label for="showBaxusPopup">Show BAXUS popup on websites</label>
+            <p class="setting-description">When enabled, comparison results will appear directly on product pages</p>
+          </div>
+          <div class="toggle-switch">
+            <input type="checkbox" id="showBaxusPopup" class="toggle-checkbox">
+            <label for="showBaxusPopup" class="toggle-slider"></label>
+          </div>
+        </div>
+        
+        <div id="settings-feedback" class="settings-feedback hidden"></div>
+      </div>
+      
+      <div class="settings-footer">
+        <div class="app-info">
+          <div class="app-version">Version 1.0.0</div>
+          <a href="https://baxus.co/help" target="_blank" class="help-link">Help & Support</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- App Footer -->
+    <footer class="app-footer">
+      <p class="copyright"> 2025 The Honey Barrel</p>
+      <p class="disclaimer">Always drink responsibly.</p>
+    </footer>
+  </div>
+
+  <script src="currency-handler.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
